@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  prepare:
+  find-tabs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.1.0
@@ -22,8 +22,9 @@ jobs:
               echo "${{ steps.files.outputs.all }}"
       - name: Find tabs
         run: |
-          cat ${{ steps.files.outputs.all }} | grep "	" > ${{ steps.files.outputs.all }}.log 2>&1
-          ls -la
+          for changed_file in ${{ steps.files.outputs.all }}; do
+              cat changed_file | grep "   " > changed_file.log 2>&1
+          done
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
