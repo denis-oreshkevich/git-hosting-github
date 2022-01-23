@@ -21,9 +21,10 @@ jobs:
               echo "${{ steps.files.outputs.all }}"
   find-tabs:
     runs-on: ubuntu-latest
-       strategy:
-        matrix:
-          changed-files: ${{ steps.files.outputs.all }}
+    strategy:
+      matrix:
+        changed-files: ${{ steps.files.outputs.all }}
+    steps:      
       - name: Find tabs
         run: |
               cat ${{changed-files}} | grep "   " > ${{changed-files}}.log 2>&1
