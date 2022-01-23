@@ -16,7 +16,8 @@ jobs:
           format: space-delimited
           token: ${{ secrets.GITHUB_TOKEN }}  
       - run: | 
-              echo "List of changed files got succesfully" 
+              echo "List of changed files got succesfully"
+              ls -la
               echo "${{ steps.files.outputs.all }}"
       - name: Find tabs
         run: |
