@@ -28,7 +28,7 @@ jobs:
     steps:      
       - name: Find tabs
         run: |
-              cat ${{changed-files}} | grep "   " > ${{changed-files}}.log 2>&1
+              cat ${{matrix.changed-files}} | grep "   " > ${{matrix.changed-files}}.log 2>&1
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
