@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        changed-files: ${{ steps.files.outputs.all }}
+        changed-files: ${{ jobs.steps.find-changed-files.files.outputs.all }}
     steps:      
       - name: Find tabs
         run: |
