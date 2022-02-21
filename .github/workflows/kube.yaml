@@ -11,5 +11,3 @@ jobs:
     steps:
       - run: | 
               echo "HELLO FROM RUNNER"
-      - name: Check out the repo
-        uses: actions/checkout@v2
