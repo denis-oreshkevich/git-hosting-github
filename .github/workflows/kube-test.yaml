@@ -22,6 +22,7 @@ jobs:
         k8s-files: ${{fromJson(needs.find-k8s-files.outputs.files)}}
       fail-fast: false
     steps:
+    - uses: actions/checkout@v2 
     - name: Test files with kubeval
       uses: instrumenta/kubeval-action@master
       with: 
