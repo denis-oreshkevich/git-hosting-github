@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest  
     steps:
       - name: Get changed files
-      - uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v2.1.0
         id: files
       - run: |
               ls ./k8s/
@@ -20,7 +20,7 @@ jobs:
         changed-files: ${{fromJson(needs.find-changed-files.outputs.files)}}
       fail-fast: false
     steps:
-    - name: test manifests folder
+    - name: Test files with kubeval
       uses: instrumenta/kubeval-action@master
       with: 
        files: ${{matrix.changed-files}}
