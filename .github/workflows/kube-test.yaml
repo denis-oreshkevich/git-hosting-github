@@ -17,6 +17,7 @@ jobs:
               echo "${{ steps.files.outputs.files }}"
               echo "${{ steps.files.outputs.files }}"
       - name: test
+        uses: actions/checkout@v2.1.0
       - run: |
           echo "${{ steps.files.outputs.files }}"
   find-tabs:
