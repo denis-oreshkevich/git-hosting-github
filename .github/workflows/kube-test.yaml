@@ -1,16 +1,16 @@
-name: Gets all changed files, find tabs, generate report
+name: Test k8s manifests
 
 on: [push, pull_request]
 
 jobs:
   find-k8s-files:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.files.outputs.FILES }}
     steps:
       - name: Get k8s files
         uses: actions/checkout@v2.1.0
         id: files
-        outputs:
-          files: ${{FILES}}
       - run: |
               ls ./k8s/
               echo "::set-output name=FILES::$(ls ./k8s/)"
