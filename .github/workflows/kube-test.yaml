@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        changed-files: ${{needs.find-changed-files.outputs.files}}
+        k8s-files: ${{needs.find-k8s-files.outputs.files}}
       fail-fast: false
     steps:
     - name: Test files with kubeval
       uses: instrumenta/kubeval-action@master
       with: 
-       files: ${{matrix.changed-files}}
+       files: ${{matrix.k8s-files}}
