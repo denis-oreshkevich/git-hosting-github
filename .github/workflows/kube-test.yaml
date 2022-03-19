@@ -13,13 +13,13 @@ jobs:
         id: files
       - run: |
               ls ./k8s/
-              echo "::set-output name=FILES::$(ls ./k8s/)"
+              echo "::set-output name=FILES::$(ls ./k8s/ | jq -R -s -c 'split("\n")[:-1]')"
   find-tabs:
     needs: find-k8s-files
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        k8s-files: ${{needs.find-k8s-files.outputs.files}}
+        k8s-files: ${{fromJson(needs.find-k8s-files.outputs.files)}}
       fail-fast: false
     steps:
     - name: Test files with kubeval
