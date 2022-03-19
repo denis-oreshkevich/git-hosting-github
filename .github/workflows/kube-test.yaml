@@ -3,7 +3,7 @@ name: Gets all changed files, find tabs, generate report
 on: [push, pull_request]
 
 jobs:
-  find-changed-files:
+  find-k8s-files:
     runs-on: ubuntu-latest  
     steps:
       - name: Get changed files
@@ -13,11 +13,11 @@ jobs:
               ls ./k8s/
               echo "::set-output name=files::$(ls ./k8s/)"
   find-tabs:
-    needs: find-changed-files
+    needs: find-k8s-files
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        changed-files: ${{fromJson(needs.find-changed-files.outputs.files)}}
+        changed-files: ${{needs.find-changed-files.outputs.files}}
       fail-fast: false
     steps:
     - name: Test files with kubeval
