@@ -13,6 +13,7 @@ jobs:
         id: files
       - run: |
               echo "::set-output name=FILELIST::$(ls ./k8s | jq -R -s -c 'split("\n")[:-1]')"
+              ls ./k8s | jq -R -s -c 'split("\n")[:-1]'
               echo "${{ steps.files.outputs.FILELIST }}"
   find-tabs:
     needs: find-k8s-files
