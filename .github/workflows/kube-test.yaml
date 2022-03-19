@@ -11,13 +11,13 @@ jobs:
       - name: Get k8s files
         uses: actions/checkout@v2.1.0
         id: files
-        run: |
+      - run: |
               echo "::set-output name=files::$(ls ./k8s | jq -R -s -c 'split("\n")[:-1]')"
               ls ./k8s | jq -R -s -c 'split("\n")[:-1]'
               echo "${{ steps.files.outputs.files }}"
               echo "${{ steps.files.outputs.files }}"
       - name: test
-        run: |
+      - run: |
           echo "${{ steps.files.outputs.files }}"
   find-tabs:
     needs: find-k8s-files
