@@ -9,6 +9,8 @@ jobs:
       - name: Get changed files
         uses: actions/checkout@v2.1.0
         id: files
+        outputs:
+          files: ${{files}}
       - run: |
               ls ./k8s/
               echo "::set-output name=files::$(ls ./k8s/)"
