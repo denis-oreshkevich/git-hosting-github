@@ -12,21 +12,9 @@ jobs:
         uses: actions/checkout@v2
         id: files
       - run: |
-              echo '::echo::on'
-              FILES="$(ls ./k8s | jq -R -s -c 'split("\n")[:-1]')"
-              echo "::set-output name=abc::`echo -n $FILES`"
-              echo "$FILES AAAAAAA"
+              FILES="$(ls -d ./k8s | jq -R -s -c 'split("\n")[:-1]')"
               echo "files=`echo -n $FILES`" >> $GITHUB_ENV
-              ls ./k8s | jq -R -s -c 'split("\n")[:-1]'
-              echo "${{ steps.files.outputs.f }}"
-              echo "${{ steps.files.outputs.abc }}"i
-              echo "${{env.files}}"
-      - name: test
-        uses: actions/checkout@v2
-      - run: |
-          echo "${{ steps.files.outputs.abc }}"
-          echo "${{env.files}}"
-  find-tabs:
+  test-files:
     needs: find-k8s-files
     runs-on: ubuntu-latest
     strategy:
