@@ -13,10 +13,11 @@ jobs:
         id: files
       - run: |
               echo "::set-output name=files::$(ls ./k8s | jq -R -s -c 'split("\n")[:-1]')"
+              echo "::set-output name=dir::$(ls -d */ | jq -R -s -c 'split("\n")[:-1]')"
               echo "::set-output name=a::$(ls)"
               ls ./k8s | jq -R -s -c 'split("\n")[:-1]'
               echo "${{ steps.files.outputs.files }}"
-              echo "${{ steps.files.outputs.files }}"
+              echo "${{ steps.files.outputs.dir }}"
               echo "${{ steps.files.outputs.a }}"
       - name: test
         uses: actions/checkout@v2.1.0
