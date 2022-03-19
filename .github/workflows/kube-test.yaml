@@ -6,7 +6,7 @@ jobs:
   find-k8s-files:
     runs-on: ubuntu-latest
     outputs:
-      files: ${{ steps.files.outputs.files }}
+      files: ${{ env.files }}
     steps:
       - name: Get k8s files
         uses: actions/checkout@v2
