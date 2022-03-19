@@ -6,14 +6,14 @@ jobs:
   find-k8s-files:
     runs-on: ubuntu-latest  
     steps:
-      - name: Get changed files
+      - name: Get k8s files
         uses: actions/checkout@v2.1.0
         id: files
         outputs:
-          files: ${{files}}
+          files: ${{FILES}}
       - run: |
               ls ./k8s/
-              echo "::set-output name=files::$(ls ./k8s/)"
+              echo "::set-output name=FILES::$(ls ./k8s/)"
   find-tabs:
     needs: find-k8s-files
     runs-on: ubuntu-latest
